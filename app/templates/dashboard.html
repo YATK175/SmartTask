@@ -1,0 +1,60 @@
+{% extends "base.html" %} {% block title %}Dashboard — SmartTask{% endblock %}
+{% block page_heading %}Головна панель{% endblock %} {% block content %}
+
+<div class="mb-4">
+  <h4>Вітаємо, {{ current_user.username }}!</h4>
+  <p class="text-secondary">Огляд вашої продуктивності та поточних завдань.</p>
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-6 col-xl-3">
+    <div class="stat-card">
+      <div class="stat-label">Усього завдань</div>
+      <div class="stat-value" id="totalTasks">0</div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-xl-3">
+    <div class="stat-card">
+      <div class="stat-label">У процесі</div>
+      <div class="stat-value text-primary" id="activeTasks">0</div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-xl-3">
+    <div class="stat-card">
+      <div class="stat-label">Виконано</div>
+      <div class="stat-value text-success" id="completedTasks">0</div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-xl-3">
+    <div class="stat-card">
+      <div class="stat-label">Прострочено</div>
+      <div class="stat-value text-danger" id="overdueTasks">0</div>
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="panel-title mb-0">Останні завдання</h5>
+
+    <a
+      href="{{ url_for('pages.tasks') }}"
+      class="btn btn-outline-primary btn-sm"
+    >
+      Усі завдання
+    </a>
+  </div>
+
+  <div id="dashboardTasks">
+    <p class="text-secondary">Завантаження завдань...</p>
+  </div>
+</div>
+
+<div id="dashboardAlert"></div>
+
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

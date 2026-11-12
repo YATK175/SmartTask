@@ -1,0 +1,128 @@
+{% extends "base.html" %} {% block title %}AI Analytics — SmartTask{% endblock
+%} {% block page_heading %}AI Analytics{% endblock %} {% block content %}
+
+<div class="mb-4">
+  <h4>Інтелектуальна аналітика</h4>
+
+  <p class="text-secondary">
+    Аналіз ризиків та рекомендації для ваших завдань.
+  </p>
+</div>
+
+<div class="alert alert-warning">
+  <strong>Експериментальна ML-модель.</strong>
+  Random Forest навчена на синтетичних даних. Оцінка ризику не є підтвердженою
+  ймовірністю прострочення для реального користувача.
+</div>
+
+<!-- Статистичні картки -->
+
+<div class="row g-3 mb-4">
+  <div class="col-md-6 col-xl-3">
+    <div class="stat-card">
+      <div class="stat-label">Усього завдань</div>
+      <div class="stat-value" id="aiTotalTasks">0</div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-xl-3">
+    <div class="stat-card">
+      <div class="stat-label">Проаналізовано</div>
+      <div class="stat-value text-primary" id="aiAnalyzedTasks">0</div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-xl-3">
+    <div class="stat-card">
+      <div class="stat-label">Високий ризик</div>
+      <div class="stat-value text-danger" id="aiHighRisk">0</div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-xl-3">
+    <div class="stat-card">
+      <div class="stat-label">Не проаналізовано</div>
+      <div class="stat-value" id="aiUnanalyzed">0</div>
+    </div>
+  </div>
+</div>
+
+<!-- Розподіл ризиків -->
+
+<div class="row g-4 mb-4">
+  <div class="col-lg-7">
+    <div class="panel h-100">
+      <h5 class="panel-title">Розподіл рівнів ризику</h5>
+
+      <div id="riskChart" style="height: 300px">Завантаження аналітики...</div>
+    </div>
+  </div>
+
+  <div class="col-lg-5">
+    <div class="panel h-100">
+      <h5 class="panel-title">Оцінювання моделі</h5>
+
+      <div id="modelMetrics">
+        <p class="text-secondary">Завантаження метрик...</p>
+      </div>
+
+      <div class="small text-secondary mt-3">
+        Метрики отримані на відкладеній синтетичній тестовій вибірці. Вони не
+        характеризують підтверджену точність на реальних завданнях.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Аналіз завдань -->
+
+<div class="panel mb-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="panel-title mb-0">Аналіз завдань</h5>
+
+    <button class="btn btn-outline-primary btn-sm" id="refreshAiButton">
+      Оновити
+    </button>
+  </div>
+
+  <div id="aiAlert"></div>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Завдання</th>
+          <th>Пріоритет</th>
+          <th>Статус</th>
+          <th>Оцінка моделі</th>
+          <th>Ризик</th>
+          <th>Дії</th>
+        </tr>
+      </thead>
+
+      <tbody id="aiTasksTable">
+        <tr>
+          <td colspan="6" class="text-center text-secondary">
+            Завантаження...
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Рекомендації -->
+
+<div class="panel" id="recommendationPanel" hidden>
+  <h5 class="panel-title">Результат інтелектуального аналізу</h5>
+
+  <div id="recommendationContent"></div>
+</div>
+
+{% endblock %} {% block scripts %}
+
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+
+<script src="{{ url_for('static', filename='js/ai_analytics.js') }}"></script>
+
+{% endblock %}

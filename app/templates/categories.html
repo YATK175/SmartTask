@@ -1,0 +1,79 @@
+{% extends "base.html" %} {% block title %}Категорії — SmartTask{% endblock %}
+{% block page_heading %}Категорії{% endblock %} {% block content %}
+
+<div class="mb-4">
+  <h4>Мої категорії</h4>
+  <p class="text-secondary">Організовуйте завдання за напрямами діяльності.</p>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-4">
+    <div class="panel">
+      <h5 class="panel-title" id="categoryFormTitle">Створити категорію</h5>
+
+      <div id="categoriesAlert"></div>
+
+      <form id="categoryForm">
+        <input type="hidden" id="categoryId" />
+
+        <div class="mb-3">
+          <label class="form-label">Назва категорії</label>
+          <input
+            type="text"
+            id="categoryName"
+            class="form-control"
+            maxlength="80"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Опис</label>
+          <textarea
+            id="categoryDescription"
+            class="form-control"
+            maxlength="255"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">Колір</label>
+          <input
+            type="color"
+            id="categoryColor"
+            class="form-control form-control-color"
+            value="#4361EE"
+          />
+        </div>
+
+        <button class="primary-button w-100" type="submit">
+          Зберегти категорію
+        </button>
+
+        <button
+          class="btn btn-outline-secondary w-100 mt-2"
+          type="button"
+          id="cancelCategoryEdit"
+          hidden
+        >
+          Скасувати редагування
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="col-lg-8">
+    <div class="panel">
+      <h5 class="panel-title">Список категорій</h5>
+
+      <div id="categoryList">
+        <p class="text-secondary">Завантаження категорій...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='js/categories.js') }}"></script>
+{% endblock %}

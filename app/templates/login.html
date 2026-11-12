@@ -1,0 +1,52 @@
+{% extends "base.html" %} {% block title %}Вхід — SmartTask{% endblock %} {%
+block auth_content %}
+
+<div class="auth-card">
+  <div class="brand text-dark mb-4">
+    <span class="brand-icon">S</span>
+    SmartTask
+  </div>
+
+  <h1>Вітаємо знову!</h1>
+
+  <p class="auth-subtitle">Увійдіть, щоб продовжити роботу.</p>
+
+  <div id="authAlert"></div>
+
+  <form id="loginForm">
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input
+        type="email"
+        name="email"
+        class="form-control form-control-lg"
+        placeholder="example@email.com"
+        required
+      />
+    </div>
+
+    <div class="mb-4">
+      <label class="form-label">Пароль</label>
+      <input
+        type="password"
+        name="password"
+        class="form-control form-control-lg"
+        placeholder="Введіть пароль"
+        required
+      />
+    </div>
+
+    <button type="submit" class="primary-button w-100" id="loginButton">
+      Увійти
+    </button>
+  </form>
+
+  <p class="text-center mt-4 mb-0">
+    Немає облікового запису?
+    <a href="{{ url_for('pages.register_page') }}"> Зареєструватися </a>
+  </p>
+</div>
+
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+{% endblock %}
